@@ -1,5 +1,6 @@
 import { AutoMap } from '@automapper/classes';
 import { ApiProperty } from '@nestjs/swagger';
+import { Image } from '../image/entites/image.entites';
 
 export class LoginDto {
   @AutoMap()
@@ -25,4 +26,6 @@ export class UserDtoResponse extends UserDto {
   @AutoMap()
   @ApiProperty()
   is_active: boolean;
+  @ApiProperty()
+  images: Image[];
 }

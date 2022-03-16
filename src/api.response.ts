@@ -1,5 +1,3 @@
-import { Injectable } from '@nestjs/common';
-
 export interface ResponseData<T> {
   data: T;
   code: number;
@@ -12,16 +10,16 @@ export interface ResponseData<T> {
 export class ResponseApi {
   withSuccess(data: any): ResponseData<any> {
     return {
-      data: data,
       code: 200,
       status: 1,
+      data: data,
     };
   }
   withFalse(): ResponseData<any> {
     return {
-      data: 'Lỗi',
       code: 404,
       status: 0,
+      data: 'Lỗi',
     };
   }
 }

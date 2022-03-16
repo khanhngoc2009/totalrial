@@ -18,7 +18,7 @@ import { Image } from './module/image/entites/image.entites';
       password: '123456789',
       database: 'k1',
       entities: [User, Image],
-      // synchronize: true,
+      synchronize: true,
     }),
   ],
   controllers: [AppController],

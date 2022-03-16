@@ -8,6 +8,7 @@ export class UserTranfromer {
       entites: User,
       value: user,
     });
+
     return {
       ...response,
       full_name: `${user.first_name + user.last_name}`,
