@@ -1,9 +1,12 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { IndexModule } from './module/index.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './module/user/entities/user.entities';
+import { ResponseApi } from './api.response';
+import { Image } from './module/image/entites/image.entites';
+@Global()
 @Module({
   imports: [
     IndexModule,
@@ -14,11 +17,11 @@ import { User } from './module/user/entities/user.entities';
       username: 'root',
       password: '123456789',
       database: 'k1',
-      entities: [User],
-      synchronize: false,
+      entities: [User, Image],
+      // synchronize: true,
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ResponseApi],
 })
 export class AppModule {}
