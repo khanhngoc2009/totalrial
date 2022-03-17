@@ -7,17 +7,26 @@ export class User {
   @AutoMap()
   @PrimaryGeneratedColumn()
   id: number;
+
   @AutoMap()
   @Column({ nullable: true })
   first_name: string;
+
   @AutoMap()
   @Column({ nullable: true })
   last_name: string;
+
   @AutoMap()
   @Column()
   user_name: string;
+
+  @AutoMap()
+  @Column()
+  phone: string;
+
   @Column()
   password: string;
+
   @AutoMap()
   @Column({ default: true })
   is_active: boolean;
@@ -25,4 +34,8 @@ export class User {
   @AutoMap({ typeFn: () => Image })
   @OneToMany(() => Image, (img) => img.user)
   images: Image[];
+
+  @AutoMap()
+  @Column()
+  token: string;
 }

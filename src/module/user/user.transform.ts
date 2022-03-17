@@ -1,4 +1,4 @@
-import { laughValue, mapper } from 'src/maper.module';
+import { laughValue } from 'src/maper.module';
 import { User } from './entities/user.entities';
 import { UserDtoResponse } from './user.dto';
 export class UserTranfromer {

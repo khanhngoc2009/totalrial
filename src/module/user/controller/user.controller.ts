@@ -1,35 +1,24 @@
 import { Body, Controller, Get, Headers, Post, Put } from '@nestjs/common';
-import { ApiBearerAuth } from '@nestjs/swagger';
-import { ResponseApi, ResponseData } from 'src/api.response';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ResponseData } from 'src/api.response';
+import { HeaderRequestInterface } from 'src/app.interface';
 import { UserService } from '../service/user.service';
 import { LoginDto, UserDto, UserDtoResponse } from '../user.dto';
-interface Header {
-  host: any;
-  connection: string;
-  authorization: string;
-  referer: string;
-  'accept-language': string;
-}
 
+@ApiTags('Customer')
 @Controller(`customer`)
 export class UserController {
-  constructor(
-    private readonly userService: UserService,
-    private responseApi: ResponseApi,
-  ) {}
+  constructor(private readonly userService: UserService) {}
 
-  @Get(`list`)
-  async getAllUser() {
-    return await this.userService.getAll();
-  }
   @ApiBearerAuth()
+  @Get(`list`)
+  async getAllUser(@Headers() headers: HeaderRequestInterface) {
+    return await this.userService.getAll(headers.authorization);
+  }
+
   @Get(`getToken`)
-  async getToken(@Headers() headers: Header) {
-    console.log({ headers });
-    if (headers.authorization)
-      return await this.userService.getToken(
-        'khanh' + `${new Date().getTime()}`,
-      );
+  async getToken() {
+    return await this.userService.getToken('khanh' + `${new Date().getTime()}`);
   }
 
   @Post('register')
