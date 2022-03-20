@@ -1,11 +1,11 @@
 import { Global, Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ResponseApi } from './api.response';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { IndexModule } from './module/index.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './module/user/entities/user.entities';
-import { ResponseApi } from './api.response';
 import { Image } from './module/image/entites/image.entites';
+import { IndexModule } from './module/index.module';
+import { User } from './module/user/entities/user.entities';
 @Global()
 @Module({
   imports: [

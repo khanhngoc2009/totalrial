@@ -1,9 +1,7 @@
-import { AutoMap } from '@automapper/classes';
 import { ApiProperty } from '@nestjs/swagger';
-import { Image } from '../image/entites/image.entites';
+import { ImageDto } from '../../image/image.dto';
 
 export class LoginDto {
-  @AutoMap()
   @ApiProperty()
   user_name: string;
 
@@ -12,27 +10,38 @@ export class LoginDto {
 }
 
 export class UserDto extends LoginDto {
-  @AutoMap()
   @ApiProperty()
   last_name: string;
 
-  @AutoMap()
   @ApiProperty()
   first_name: string;
 }
 
 export class UserDtoResponse extends UserDto {
-  @AutoMap()
   @ApiProperty()
   full_name: string;
 
-  @AutoMap()
   @ApiProperty()
   is_active: boolean;
 
   @ApiProperty()
-  images: Image[];
+  images: ImageDto[];
 
   @ApiProperty()
   token?: string;
+
+  @ApiProperty()
+  phone?: string;
+
+  @ApiProperty()
+  role: number;
+}
+
+export class UserUpdateRequest {
+  @ApiProperty()
+  last_name: string;
+  @ApiProperty()
+  first_name: string;
+  @ApiProperty()
+  phone: string;
 }
