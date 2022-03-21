@@ -8,8 +8,8 @@ import { ImageService } from '../service/image.service';
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
-  @ApiBearerAuth()
-  @Roles(Role.User)
+  // @ApiBearerAuth()
+  // @Roles(Role.User)
   @Get(`list`)
   async getAllImage() {
     try {
