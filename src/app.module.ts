@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Image } from './module/image/entites/image.entites';
 import { IndexModule } from './module/index.module';
+import { Product } from './module/product/entities/product.entities';
 import { User } from './module/user/entities/user.entities';
 @Global()
 @Module({
@@ -17,7 +18,7 @@ import { User } from './module/user/entities/user.entities';
       username: 'root',
       password: '123456789',
       database: 'k1',
-      entities: [User, Image],
+      entities: [User, Image, Product],
       synchronize: true,
     }),
   ],
