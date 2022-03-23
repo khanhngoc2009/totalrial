@@ -15,7 +15,7 @@ import { ProductService } from './service/product.service';
       dest: './files',
     }),
   ],
-  controllers: [ProductController],
+  controllers: [ProductController, ProductAdminController],
   providers: [ProductService, ResponseApi, ProductAdminService],
 })
 export class ProductModule {}

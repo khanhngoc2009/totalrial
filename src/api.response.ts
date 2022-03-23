@@ -4,6 +4,7 @@ export interface ResponseData<T> {
   data: T;
   code: number;
   status: number;
+  messgae?: string;
   pagging?: {
     page?: number;
     limit?: number;
@@ -14,6 +15,7 @@ export class ResponseApi {
     return {
       code: 200,
       status: 1,
+      messgae: 'Thành công',
       data: data,
     };
   }
