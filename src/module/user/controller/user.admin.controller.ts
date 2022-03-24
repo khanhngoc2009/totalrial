@@ -72,4 +72,14 @@ export class UserAdminController {
 
     return this.userAdminService.detailUser(params);
   }
+
+  @ApiBearerAuth()
+  @Roles(Role.Admin)
+  @Post('delete')
+  async deleteUser(@Query() params: UserRequestDetail) {
+    if (!params.user_id)
+      throw new ErrorException(HttpStatus.NOT_FOUND, 'Validate error');
+
+    return this.userAdminService.deleteUser(params);
+  }
 }

@@ -1,17 +1,31 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { RequestListUserAdmin } from 'src/app.interface';
-import { UserDto, UserDtoResponse } from './user.dto';
 
-export interface BodyCreateProduct {
+export class BodyCreateProduct {
+  @ApiProperty()
   productName: string;
+  @ApiProperty()
   price: number;
+  @ApiProperty()
   url: string;
+  @ApiProperty()
   quantity: number;
-  quantityRemain: number;
 }
-export interface ListProductAdmin extends BodyCreateProduct {
+export class ListProductAdmin extends BodyCreateProduct {
+  @ApiProperty()
   id: number;
+  @ApiProperty()
   isActive: number;
 }
 
 export class ListProductRequest extends RequestListUserAdmin {}
+
+export class DetailParams {
+  @ApiProperty()
+  id: number;
+}
+
+export class BodyUpdateProduct extends BodyCreateProduct {
+  @ApiProperty()
+  status?: number;
+}

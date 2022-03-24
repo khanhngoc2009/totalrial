@@ -38,7 +38,17 @@ export class UserAdminService extends BaseService {
     if (!res)
       throw new ErrorException(HttpStatus.UNAUTHORIZED, DEFIND_EXPEPTION.token);
 
-    const users: User[] = await this.userRepository.find({
+    const [users, count] = await this.userRepository.findAndCount({
+      select: [
+        'id',
+        'first_name',
+        'images',
+        'is_active',
+        'phone',
+        'token',
+        'user_name',
+        'role',
+      ],
       relations: ['images'],
       skip: +params.limit * (+params.page - 1),
       take: +params.limit,
@@ -49,7 +59,7 @@ export class UserAdminService extends BaseService {
       plainToClass(UserAdminDtoResponse, user),
     );
 
-    return responseUsers;
+    return { users: responseUsers, count };
   }
 
   async createUser(user: RequestCreateUserAdmin): Promise<any> {
@@ -94,6 +104,18 @@ export class UserAdminService extends BaseService {
         where: { id: payload.user_id },
         relations: ['images'],
       });
+      return this.withSuccess(user);
+    } catch (e) {
+      throw new ErrorException(HttpStatus.FAILED_DEPENDENCY);
+    }
+  }
+
+  async deleteUser(payload: UserRequestDetail): Promise<ResponseData<string>> {
+    try {
+      const user = await this.userRepository.find({
+        where: { id: payload.user_id },
+      });
+      await this.userRepository.remove(user);
       return this.withSuccess(user);
     } catch (e) {
       throw new ErrorException(HttpStatus.FAILED_DEPENDENCY);

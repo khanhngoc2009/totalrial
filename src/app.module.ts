@@ -1,8 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ResponseApi } from './api.response';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Image } from './module/image/entites/image.entites';
 import { IndexModule } from './module/index.module';
 import { Product } from './module/product/entities/product.entities';
@@ -22,7 +20,7 @@ import { User } from './module/user/entities/user.entities';
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService, ResponseApi],
+  controllers: [],
+  providers: [ResponseApi],
 })
 export class AppModule {}

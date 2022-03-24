@@ -1,5 +1,12 @@
 import { Image } from 'src/module/image/entites/image.entites';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeRemove,
+  Column,
+  Entity,
+  getRepository,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: `user` })
 export class User {
@@ -32,4 +39,13 @@ export class User {
 
   @Column({ default: 1 })
   role: number;
+
+  @BeforeRemove()
+  async removeImage() {
+    const userReponsitory = getRepository(Image);
+    const images = await userReponsitory.find({ where: { user_id: this.id } });
+    if (images) {
+      await getRepository(Image).remove(images);
+    }
+  }
 }

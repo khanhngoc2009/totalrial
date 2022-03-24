@@ -14,7 +14,7 @@ export class Product {
   @Column()
   url: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, default: true })
   status: number;
 
   @Column({ nullable: false, default: 0 })
