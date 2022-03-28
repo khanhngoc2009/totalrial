@@ -1,3 +1,4 @@
+import { Cart } from 'src/module/cart/Cart';
 import { Image } from 'src/module/image/entites/image.entites';
 import {
   BeforeRemove,
@@ -33,6 +34,9 @@ export class User {
 
   @OneToMany(() => Image, (img) => img.user)
   images: Image[];
+
+  @OneToMany(() => Cart, (cart) => cart.user)
+  carts: Cart[];
 
   @Column({ nullable: true })
   token: string;
