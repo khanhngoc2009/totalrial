@@ -31,11 +31,7 @@ export class UserController {
   async loginUser(
     @Body() data: LoginDto,
   ): Promise<ResponseData<UserDtoResponse>> {
-    try {
-      return await this.userService.loginUser(data);
-    } catch (error) {
-      throw error.message;
-    }
+    return await this.userService.loginUser(data);
   }
 
   @ApiBearerAuth()

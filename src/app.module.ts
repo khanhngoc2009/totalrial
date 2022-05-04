@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ResponseApi } from './api.response';
+import { Cart } from './module/cart/Cart';
 import { Image } from './module/image/entites/image.entites';
 import { IndexModule } from './module/index.module';
 import { Product } from './module/product/entities/product.entities';
@@ -14,9 +15,9 @@ import { User } from './module/user/entities/user.entities';
       host: '127.0.0.1',
       port: 3306,
       username: 'root',
-      password: '123456789',
+      password: '01677010083ngoc',
       database: 'k1',
-      entities: [User, Image, Product],
+      entities: [User, Image, Product, Cart],
       synchronize: true,
     }),
   ],
