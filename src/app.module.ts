@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ResponseApi } from './api.response';
@@ -15,8 +16,8 @@ import { User } from './module/user/entities/user.entities';
       host: '127.0.0.1',
       port: 3306,
       username: 'root',
-      password: '01677010083ngoc',
-      database: 'k1',
+      password: '123456789',
+      database: 'salon_db',
       entities: [User, Image, Product, Cart],
       synchronize: true,
     }),
